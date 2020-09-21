@@ -7,17 +7,19 @@ defmodule WordCount do
   @spec count(String.t()) :: map
   def count(sentence) do
     mapAcc = %{}
-    shortString = String.replace(sentence, [",","!","&","@","$","%","^","&",":",], "")
+    lowerCaseString = String.downcase(sentence)
+    shortString = String.replace(lowerCaseString, [",","!","&","@","$","%","^","&",":",], "")
     singleSpaceString = String.replace(shortString, ~r/\s+/, " ")
     words = String.split(singleSpaceString, [" ","_",])
     wordMap = Enum.reduce(
       words,
       mapAcc,
       fn word, acc ->
+
         update_map(
           acc,
-          String.downcase(word),
-          acc[String.downcase(word)]
+          word,
+          acc[word]
         )
       end
     )
