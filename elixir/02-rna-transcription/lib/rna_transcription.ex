@@ -7,43 +7,42 @@ defmodule RnaTranscription do
   iex> RnaTranscription.to_rna('ACTG')
   'UGAC'
   """
-  @spec to_rna([char]) :: [char]
+  # @spec to_rna([char]) :: [char]
   # The first to_rna can be excluded, it saves a single call to Enum.map
-  def to_rna([dna]) do
-    [ conversion_map(dna) ]
-  end
+  # def to_rna([dna]) do
+  #   [ conversion_map(dna) ]
+  # end
+  # def to_rna(dna) do
+  #   convert_list(dna)
+  # end
+  @spec to_rna([char]) :: [char]
   def to_rna(dna) do
-    convert_list(dna)
+    Enum.map(dna, &conversion_map/1)
   end
 
-  @spec convert_list([char]) :: [char]
-  def convert_list(input) do
-    Enum.map(input, fn(x) -> conversion_map(x)  end)
-  end
-  @spec conversion_map(any) :: any
+  @spec conversion_map(char) :: char
   def conversion_map(dna) do
     %{
-      71=>67,
-      67=>71,
-      84=>65,
-      65=>85
+      ?G=>?C,
+      ?C=>?G,
+      ?T=>?A,
+      ?A=>?U
     }[dna]
-    # old implementation:
-    #   %{
-    #     'G'=>'C',
-    #     'C'=>'G',
-    #     'T'=>'A',
-    #     'A'=>'U'
-    #   }[dna]
   end
 
-  @spec convert_chars_to_octal(any, any) :: [any]
-  def convert_chars_to_octal(expectedInputs, expectedOutputs) do
-    listy = expectedInputs ++ expectedOutputs
-    listy |>
-    Enum.uniq() |>
-    Enum.map(fn(x) -> IO.inspect({<<x::utf8>>, x})  end)
-  end
+  # @spec convert_list([char]) :: [char]
+  # def convert_list(input) do
+  #   Enum.map(input, conversion_map(x)  end)
+  # end
+
+
+  # @spec convert_chars_to_octal(any, any) :: [any]
+  # def convert_chars_to_octal(expectedInputs, expectedOutputs) do
+  #   listy = expectedInputs ++ expectedOutputs
+  #   listy |>
+  #   Enum.uniq() |>
+  #   Enum.map(fn(x) -> IO.inspect({<<x::utf8>>, x})  end)
+  # end
   # generates the following:
   #   {"A", 65}
   #   {"C", 67}
