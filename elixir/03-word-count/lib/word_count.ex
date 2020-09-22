@@ -9,7 +9,7 @@ defmodule WordCount do
     sentence
     |> String.downcase
     |> String.split([" ","_",",","!","&","@","$","%","^","&",":"], trim: true)
-    |> Enum.reduce( %{}, fn word, acc -> map_update( acc, word ) end )
+    |> Enum.reduce( %{}, fn (word, acc) -> map_update( acc, word ) end )
   end
 
   @spec map_update(map, binary) :: map
