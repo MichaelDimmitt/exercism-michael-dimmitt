@@ -5,4 +5,5 @@ package-lock.json
 .exercism
 .npmrc
 babel.config.js
-__pycache__
+__pycache__/
+raindrops.cpytho*
