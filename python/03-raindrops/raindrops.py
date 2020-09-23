@@ -11,7 +11,7 @@ def convert(number: int): # 27
 
   rain_string = ""
   for key in rain_noises.keys():
-    if ( number % key == 0 ):
+    if (number % key == 0):
       rain_string += rain_noises[key] 
   
   return rain_string if len(rain_string) != 0 else f"{number}"
