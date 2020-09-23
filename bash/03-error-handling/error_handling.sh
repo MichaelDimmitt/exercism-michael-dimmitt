@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
-main()
-  if (( $# == 1 )); then
-    echo "Hello, $1"
-    exit 0
+main(){
+  if (( $# != 1 )); then
+    echo "Usage: error_handling.sh <person>";
+    return 1;
   else 
-    echo "Usage: error_handling.sh <person>" 
-    exit 1
+    echo "Hello, $1";
+    return 0;
   fi
+}
 # call main with all of the positional arguments
 main "$@"
 
