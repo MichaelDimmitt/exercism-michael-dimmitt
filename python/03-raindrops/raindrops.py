@@ -18,6 +18,12 @@ rainNoises = {
 }
 
 def convert(number): # 27
+  if not isinstance(number, int): raise Exception("Error, input must be an integer!"); 
+
+  # additional acceptions that can be thrown:
+  # fail all negative numbers
+  # sys.maxint fail any number larger than the biggest int.
+
   listOfNoises = ''.join(gatherPrimes(number))
   
   if len(listOfNoises) == 0: return f"{number}"
