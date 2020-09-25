@@ -20,4 +20,12 @@ describe('Resistor Colors', () => {
   test('Ignore additional colors', () => {
     expect(decodedValue(['green', 'brown', 'orange'])).toEqual(51);
   })
+  test('Bad User 😏', () => {
+    expect(decodedValue(['gre', 'brown', 'orange'])).toEqual(13);
+  })
+  test('Throw same error another way', () => {
+    expect(
+      () => { decodedValue(['gre', 'brwn', 'orange']) }
+    ).toThrowError( 'codes provided are not valid!');
+  })
 });
