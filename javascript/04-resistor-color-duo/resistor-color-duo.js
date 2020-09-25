@@ -17,10 +17,7 @@ const colorHashMap = {
   white: 9
 }
 
-export const decodedValue = (resistorArray) => Number(
-  resistorArray.map(  
-    resistor => colorHashMap[resistor]
-  )
-  .slice(0, 2)
-  .join('')
-);
+export const decodedValue = ([code1, code2]) => 
+  (colorHashMap[code1] * 10) + colorHashMap[code2]
+;
+
