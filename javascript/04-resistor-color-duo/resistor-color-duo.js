@@ -30,17 +30,12 @@ const colorHashMapPlus1 = {
 }
 
 export const decodedValue = ([code1, code2, ...rest]) => {
-  try {
-    const recursiveResult = handleErrantInput(code1, code2, rest)
-    if(recursiveResult === 'no recursion, continue'){
-      return (colorHashMap[code1] * 10) + colorHashMap[code2]
-    }
-    else { 
-      return recursiveResult 
-    }
-  }catch(error){
-    console.log({error})
-    throw error
+  const recursiveResult = handleErrantInput(code1, code2, rest)
+  if(recursiveResult === 'no recursion, continue'){
+    return (colorHashMap[code1] * 10) + colorHashMap[code2]
+  }
+  else { 
+    return recursiveResult 
   }
 };
 
