@@ -1,4 +1,7 @@
-const second = 1000;
-const billion =  1000000000
+const SECOND = 1000;
+const BILLION = 10e8 // Math.pow(10,9)
 
-export const gigasecond = (d) => new Date(d.getTime() + (billion * second));
+const GIGA_SECOND = (BILLION * SECOND)
+
+export const gigasecond = (inputDate) => 
+  new Date(inputDate.getTime() + GIGA_SECOND );
