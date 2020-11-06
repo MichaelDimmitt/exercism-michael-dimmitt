@@ -3,23 +3,15 @@ export const age = (planet, input) => {
     const seconds = 60
     const minutes = 60
     const hours = 24
-    const year = 365
-    const planetYear = getPlanetYearHandlingLeapYear(planet)
-    const leapYearAdjustedScalar = planetYear / 365
+    const year = 365.25
     
     const earthYears = ( input  / (seconds * minutes * hours * year ) )
-    const planetYears = (earthYears / leapYearAdjustedScalar).toFixed(2)
+    const planetYears = ( earthYears / earthScalar[planet] ).toFixed(2)
     
     return Number(planetYears)
   }
   
 };
-
-const getPlanetYearHandlingLeapYear = (planet) => {
-  // if(planet === 'earth') return 365
-  return ( ( 365 * 3 ) + 366 ) * earthScalar[planet] / 4
-}
-
 
 // Earth: 1.0 Earth years, 365.25 Earth days, or 31,557,600 seconds
 const earthScalar = {
