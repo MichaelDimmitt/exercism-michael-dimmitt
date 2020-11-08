@@ -1,12 +1,9 @@
-export const age = (planet, input) => {
+export const age = (planet, inputSeconds) => {
   if(earthScalar[planet]){
-    const seconds = 60
-    const minutes = 60
-    const hours = 24
-    const year = 365.25
+    const EARTH_YEAR_IN_SECONDS = 31557600
     
-    const earthYears = ( input  / (seconds * minutes * hours * year ) )
-    const planetYears = ( earthYears / earthScalar[planet] ).toFixed(2)
+    const planetSeconds = inputSeconds / earthScalar[planet]
+    const planetYears = ( planetSeconds / EARTH_YEAR_IN_SECONDS ).toFixed(2)
     
     return Number(planetYears)
   }
@@ -14,7 +11,7 @@ export const age = (planet, input) => {
 };
 
 // Earth: 1.0 Earth years, 365.25 Earth days, or 31,557,600 seconds
-const earthScalar = {
+const orbitalPeriods = {
   earth: 1,
   mercury: 0.2408467,
   venus: 0.61519726,
