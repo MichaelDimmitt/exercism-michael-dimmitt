@@ -9,10 +9,5 @@ def personal_best(scores):
     return max(scores)
 
 def personal_top_three(scores):
-    l = scores
-    l.sort(reverse=True)
-    
-    if len(l) > 3:
-      a, b, c, *z = l
-      l = [a, b, c]
-    return l
+    scores.sort(reverse=True)
+    return scores[:3]
