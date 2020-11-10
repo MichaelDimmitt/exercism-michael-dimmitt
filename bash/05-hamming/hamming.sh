@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 main () {
-  [ $# -lt 2 ] && echo "Usage: hamming.sh <string1> <string2>" && exit 1
-  ! [ ${#1} -eq ${#2} ] && echo "left and right strands must be of equal length" && exit 1
+  (( $# != 2 )) && echo "Usage: hamming.sh <string1> <string2>" && exit 1
+  (( ${#1} != ${#2} )) && echo "left and right strands must be of equal length" && exit 1
 
   # loopingSolution "$1" "$2"
   processSubstitution "$1" "$2"
