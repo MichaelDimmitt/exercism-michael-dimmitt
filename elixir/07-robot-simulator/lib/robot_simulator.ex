@@ -31,27 +31,24 @@ defmodule RobotSimulator do
   end
   def simulate(_, _), do: {:error, "invalid instruction"}
 
-  def move( ?A, %{ position: {x, y}, direction: :north  } ), do: %{ position: {x, y+1}, direction: :north }
-  def move( ?A, %{ position: {x, y}, direction: :south  } ), do: %{ position: {x, y-1}, direction: :south }
-  def move( ?A, %{ position: {x, y}, direction: :west  } ), do: %{ position: {x-1, y}, direction: :west }
-  def move( ?A, %{ position: {x, y}, direction: :east  } ), do: %{ position: {x+1, y}, direction: :east }
+  def move( ?A, %{ direction: :north } = robot ), do: %{ position: {x, y+1}, direction: :north }
+  def move( ?A, %{ direction: :south } = robot ), do: %{ position: {x, y-1}, direction: :south }
+  def move( ?A, %{ direction: :west  } = robot ), do: %{ position: {x-1, y}, direction: :west }
+  def move( ?A, %{ direction: :east  } = robot ), do: %{ position: {x+1, y}, direction: :east }
 
   #     N
   #   E   W
   #     S
 
-  def move( ?R, robot ), do: turn(1, robot)
-  def move( ?L, robot ), do: turn(-1, robot)
+  # def move( ?R, %{ direction: :north } = robot ), do: %{ robot | direction: :east }
+  # def move( ?R, %{ direction: :east  } = robot ), do: %{ robot | direction: :south }
+  # def move( ?R, %{ direction: :south } = robot ), do: %{ robot | direction: :west }
+  # def move( ?R, %{ direction: :west  } = robot ), do: %{ robot | direction: :north }
 
-  # def move( ?R, %{ position: position, direction: :north  } ), do: %{ position: position, direction: :east }
-  # def move( ?R, %{ position: position, direction: :east  } ), do: %{ position: position, direction: :south }
-  # def move( ?R, %{ position: position, direction: :south  } ), do: %{ position: position, direction: :west }
-  # def move( ?R, %{ position: position, direction: :west  } ), do: %{ position: position, direction: :north }
-
-  # def move( ?L, %{ position: position, direction: :north  } ), do: %{ position: position, direction: :west }
-  # def move( ?L, %{ position: position, direction: :west  } ), do: %{ position: position, direction: :south }
-  # def move( ?L, %{ position: position, direction: :south  } ), do: %{ position: position, direction: :east }
-  # def move( ?L, %{ position: position, direction: :east  } ), do: %{ position: position, direction: :north }
+  # def move( ?L, %{ direction: :north } = robot ), do: %{ robot |, direction: :west }
+  # def move( ?L, %{ direction: :west  } = robot ), do: %{ robot |, direction: :south }
+  # def move( ?L, %{ direction: :south } = robot ), do: %{ robot | direction: :east }
+  # def move( ?L, %{ direction: :east  } = robot ), do: %{ robot | direction: :north }
 
   def turn( incrementor, %{ position: position, direction: direction  } ) do
     index = Enum.find_index(@compass, fn x -> x == direction end )
